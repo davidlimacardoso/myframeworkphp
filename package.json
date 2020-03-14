@@ -8,7 +8,9 @@
     "jquery": "^3.4.1",
     "popper": "^1.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "acorn": ">=7.1.1"
+  },
   "scripts": {
     "test": "mocha"
   },
