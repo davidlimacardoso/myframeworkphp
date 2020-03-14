@@ -52,42 +52,55 @@ class Users extends Framework {
         if($modelUser->countUsers()){
             echo $modelUser->countUsers();
         }
-
-        //echo $result;
-
     }
+
+    //Fetch All
+    public function fetchOnlyUser(){
+
+        $modelUser = $this->model('User');
+
+        if($modelUser->fetchAssocUsers()){
+            $result = $modelUser->fetchAssocUsers();
+            print_r($result);
+        }
+    }
+
 
     //Insert User using form
     public function insertUserForm(){
         
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        if(empty($name) || $name == null){
-            echo "Name can't be null";
-        }
-        if(empty($email) || $email == null){
-            echo "Email can't be null";
-        }
-        if(empty($password) || $password == null){
-            echo "Password can't be null";
+        $req = array(
+        'name' => $_POST['name'],
+        'email' => $_POST['email'],
+        'password' => $_POST['password']
+        );
+        
+        
+        if(count($req) == 0){
+            echo "The fild can't be null:" . "<br>";
+        }else{
+            echo "The filds can't be null:" . "<br>";
         }
         
-        $userModel = $this->model('User');
+        $erro = false;
+        
+        if(empty($req['name']) || $req['name'] == null){
+            echo "&bull; Name can't be null <br>";
+            $erro = true;
+        }
+        if(empty($req['email']) || $req['email'] == null){
+            echo "&bull; Email can't be null <br>";
+            $erro = true;
+        }
+        if(empty($req['password']) || $req['password'] == null){
+            echo "&bull; Password can't be null <br>";
+            $erro = true;
+        }
 
-        $userModel->insertUser($name, $email, $password) ? "Insert with success!" : "Erro to insert user";
-        // if($userModel->insertUser($name,$email,$password)){
-        //     "Success";
-        // }else{
-        //     echo "Erro";
-        // }
-
-
-        // if(!isset($_POST) || empty($_POST)){
-        //     $erro = "Filds are clean!";
-        //     return $erro;
-        // }
+        if($erro == false){
+            $userModel = $this->model('User');
+            $userModel->insertUser($req['name'], $req['email'], $req['password']) ? "Insert with success!" : "Erro to insert user";    
+        }
     }
 
 }

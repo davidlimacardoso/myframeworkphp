@@ -20,7 +20,7 @@ class ExampleModel extends Database {
         $email      = 'adm@g.com';
         $password   = '123456';
         
-        if($this->db_query('INSERT INTO users (name, email, password) 
+        if($this->query('INSERT INTO users (name, email, password) 
         VALUES (?,?,?)', [$name, $email, $password])){
             return true;
         }else{
@@ -31,7 +31,7 @@ class ExampleModel extends Database {
     //SHOW DATA FROM DATABASE
     public function countRowsData(){
 
-        if($this->db_query('SELECT * FROM users;')){
+        if($this->query('SELECT * FROM users;')){
             return $this->rowCount();
         }else{
             return false;
@@ -59,7 +59,7 @@ class ExampleModel extends Database {
     public function fetchData(){
         $id = 1;
         if($this->Query('SELECT * FROM users WHERE id = ?',[$id])){
-            return $this->fetchOnly();
+            return $this->fetchAssoc();
         }else{
             return false;
         }

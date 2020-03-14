@@ -26,7 +26,7 @@
     ?>
     <br>
     <div class="group">
-        <form action="Users/insertUserForm" method="POST">
+        <form action="insertUserForm" method="POST">
         <h3>Insert user</h3>
             <input type="text" name="name" placeholder="Name"><br><br>
             <input type="text" name="email" placeholder="Email"><br><br>

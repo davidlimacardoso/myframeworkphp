@@ -26,7 +26,7 @@ class Database{
     }
 
     //QUERY TO DATABASE
-    public function db_query($qry, $params = []){
+    public function query($qry, $params = []){
 
         if(empty($params)){
             $this->result = $this->conn->prepare($qry);
@@ -39,14 +39,14 @@ class Database{
     }
 
     // //FETCH ALL DATA FROM DATABASE TABLE
-    // public function db_fetch(){
-    //     return $this->result->db_fetch(PDO::FETCH_OBJ);
-    // }
+    public function fetchAll(){
+        return $this->result->fetch(PDO::FETCH_OBJ);
+    }
 
-    // //FETCH DATA FROM DATABASE USING WHERE
-    // public function fetchOnly(){
-    //     return $this->result->fetchOnly(PDO::FETCH_OBJ);
-    // }
+    //FETCH DATA FROM DATABASE USING WHERE
+    public function fetchAssoc(){
+        return $this->result->fetch(PDO::FETCH_OBJ);
+    }
 
     //COUNT ROWS
     public function rowCount(){
